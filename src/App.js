@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import FileUpload from './Components/FileUpload';
+import Spreadsheet from './Components/Spreadsheet';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [workbook, setWorkbook] = useState(null);
+
+    const handleFileLoad = (newWorkbook) => {
+        setWorkbook(newWorkbook);
+    };
+
+    return (
+        <div>
+            <h1>XLSX Visualizador</h1>
+            <FileUpload onFileLoad={handleFileLoad} />
+            <Spreadsheet workbook={workbook} />
+        </div>
+    );
 }
 
 export default App;
